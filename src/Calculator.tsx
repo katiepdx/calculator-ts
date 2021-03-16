@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { calculation } from './math-utils.js'
+import { calculation } from './math-utils'
 
 interface CalculatorProps {
   symbol: string,
@@ -23,7 +23,8 @@ const Calculator = ({ symbol, buttonName }: CalculatorProps) => {
     if (num1 === null || num2 === null) alert('Please enter a number')
 
     const total = calculation(symbol, num1, num2)
-    setAnswer(total)
+    if(total) setAnswer(total)
+  
   }
   return (
     <div>
