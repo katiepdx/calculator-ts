@@ -1,10 +1,11 @@
 import './App.css';
 import Calculator from './Calculator';
+import MaterialUIDrawer from './MaterialUIDrawer'
 
 function App() {
   return (
     <div className="App">
-
+      <MaterialUIDrawer />
       <header className="App-header">
         <h1>Calculator TS</h1>
         <Calculator symbol="+" buttonName="add" />
