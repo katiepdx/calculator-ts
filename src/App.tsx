@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Calculator from './Calculator';
+import MaterialUIDrawer from './MaterialUIDrawer'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Router>
+          <MaterialUIDrawer />
+          <h1>Calculator TS</h1>
+          <Switch>
+            <Route
+              exact path="/addition"
+              render={() => (
+                <Calculator symbol='+' buttonName='addition' />
+              )}
+            />
+            <Route
+              exact path="/subtraction"
+              render={() => (
+                <Calculator symbol='-' buttonName='subtraction' />
+              )}
+            />
+            <Route
+              exact path="/multiplication"
+              render={() => (
+                <Calculator symbol='*' buttonName='multiplication' />
+              )}
+            />
+            <Route
+              exact path="/division"
+              render={() => (
+                <Calculator symbol='/' buttonName='division' />
+              )}
+            />
+          </Switch>
+        </Router>
       </header>
+
     </div>
   );
 }
