@@ -1,5 +1,8 @@
 import React, { useState, KeyboardEvent, MouseEvent } from 'react';
 import clsx from 'clsx';
+
+import { Link } from 'react-router-dom'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
@@ -29,7 +32,7 @@ export default function MaterialUIDrawer() {
 
   // events to toggle open menu
   const toggleDrawer = (anchor: Anchor, open: boolean) => (
-    event: KeyboardEvent | MouseEvent,      
+    event: KeyboardEvent | MouseEvent,
   ) => {
     if (
       event.type === 'keydown' &&
@@ -54,17 +57,21 @@ export default function MaterialUIDrawer() {
     >
       <List>
         {/* map through list labels */}
-        {['Addition', 'Subtraction', 'Multiplication', 'Division'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {/* set icon for each nav item */}
-              {index === 0 && < AddIcon />}
-              {index === 1 && <SubIcon />}
-              {index === 2 && <TimesIcon />}
-              {index === 3 && '%'}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
+        {['addition', 'subtraction', 'multiplication', 'division'].map((text, index) => (
+          <Link to={`/${text}`}>
+
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {/* set icon for each nav item */}
+                {index === 0 && < AddIcon />}
+                {index === 1 && <SubIcon />}
+                {index === 2 && <TimesIcon />}
+                {index === 3 && '%'}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+            
+          </Link>
         ))}
       </List>
     </div>
@@ -73,12 +80,12 @@ export default function MaterialUIDrawer() {
   return (
     <div>
       {(['left'] as Anchor[]).map((anchor) => (
-        <React.Fragment key={anchor}>
+        <div key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
-        </React.Fragment>
+        </div>
       ))}
     </div>
   );
